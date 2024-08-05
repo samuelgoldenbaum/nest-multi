@@ -1,0 +1,18 @@
+name: multi-test
+
+services:
+  db:
+    container_name: db-test
+    build:
+      context: ./docker/db
+    networks:
+      - postgres
+    restart: always
+    ports:
+      - "5434:5434"
+    environment:
+      POSTGRES_PASSWORD: postgres
+    command: -p 5434
+networks:
+  postgres:
+    driver: bridge
